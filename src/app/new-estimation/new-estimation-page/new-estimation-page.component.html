@@ -1,0 +1,53 @@
+<div class="col-lg-4 m-t-50">
+  <form (ngSubmit)="postEstimation()"
+        #estimationForm="ngForm"
+        [hidden]="submitted">
+      <div class="form-group">
+            <input type="text" 
+                   required
+                   class="form-control"
+                   placeholder="Title of estimation"
+                   name="title"
+                   id="title"
+                   [(ngModel)]="request.title">
+      </div>
+      <div class="form-group">
+        <textarea class="form-control"
+                  required
+                  placeholder="Details of estimation"
+                  rows="10"
+                  cols="10"
+                  name="details"
+                  [(ngModel)]="request.description"></textarea>
+      </div>
+      <div class="form-group">
+        <select class="form-control"
+                name="method"
+                required
+                [(ngModel)]="request.method">
+          <option value="single">Simple estimation</option>
+          <option value="min-max">Min-max estimation</option>
+          <option value="3-point">3 point estimation</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <span class="input-group-btn">
+          <button type="submit" [disabled]="!estimationForm.form.valid" class="btn btn-primary btn-block">Generate</button>
+        </span>
+      </div>
+  </form>
+  <div [hidden]="!submitted">
+    <button class="btn btn-block btn-primary" (click)="addNewEstimation()">New Estimation</button>
+  </div>
+</div>
+<div class="col-lg-4">
+  <h4 class="m-t-50" *ngIf="generatedEstimations.length">Recent estimations asked for</h4>
+  <div *ngFor="let generated of generatedEstimations" class="well m-t-50">
+    <div>
+      Estimate the <span>{{ generated.title }}</span> at <a href="{{ baseURL }}/add-estimation/{{ generated.request_id }}">{{ baseURL }}/add-estimation/{{ generated.request_id }}</a>.
+    </div>
+    <div>
+      See how much the <span>{{ generated.title }}</span> was estimated for at <a href="{{ baseURL }}/get-estimation/{{ generated.request_id }}">{{ baseURL }}/get-estimation/{{ generated.request_id }}</a>.
+    </div>
+  </div>
+</div>
