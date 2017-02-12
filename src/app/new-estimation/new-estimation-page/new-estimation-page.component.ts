@@ -7,13 +7,13 @@ import { UUID } from 'angular2-uuid';
 @Component({
   selector: 'app-new-estimation-page',
   templateUrl: './new-estimation-page.component.html',
-  styleUrls: ['./new-estimation-page.component.sass'],
+  styleUrls: ['./new-estimation-page.component.scss'],
   providers: [AuthorizationService, EstimationService]
 })
 export class NewEstimationPageComponent implements OnInit {
 
   request: EstimationRequest;
-  submitted: boolean = false;
+  submitted = false;
   current_ip: string;
   generatedEstimations: Array<EstimationRequest> = [];
   baseURL: string;
@@ -46,9 +46,20 @@ export class NewEstimationPageComponent implements OnInit {
     });
   }
 
+  copyToClipboard(id: string) {
+    let urlField = document.querySelector('#' + id);
+    // Create a Range object
+    let range = document.createRange();
+    // Set the Node to select the "range"
+    range.selectNode(urlField);
+    // Add the Range to the set of window selections
+    window.getSelection().addRange(range);
+    document.execCommand('copy');
+  }
+
   addNewEstimation() {
     this.submitted = false;
-    //Reset request
+    // Reset request
     this.request = new EstimationRequest();
     this.request.individual_estimations = [];
     this.request.participants_ips = [];

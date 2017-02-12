@@ -3,7 +3,7 @@
         #estimationForm="ngForm"
         [hidden]="submitted">
       <div class="form-group">
-            <input type="text" 
+            <input type="text"
                    required
                    class="form-control"
                    placeholder="Title of estimation"
@@ -42,12 +42,28 @@
 </div>
 <div class="col-lg-4">
   <h4 class="m-t-50" *ngIf="generatedEstimations.length">Recent estimations asked for</h4>
-  <div *ngFor="let generated of generatedEstimations" class="well m-t-50">
-    <div>
-      Estimate the <span>{{ generated.title }}</span> at <a href="{{ baseURL }}/add-estimation/{{ generated.request_id }}">{{ baseURL }}/add-estimation/{{ generated.request_id }}</a>.
+  <div *ngFor="let generated of generatedEstimations" class="m-t-50">
+    <div class="well">
+      <span id="add-{{ generated.request_id }}">
+          Estimate the <span>{{ generated.title }}</span> at
+          <a href="{{ baseURL }}/add-estimation/{{ generated.request_id }}">{{ baseURL }}/add-estimation/{{ generated.request_id }}</a>.
+          </span>
+       <div>
+          <button class="btn btn-primary" (click)="copyToClipboard('add-' + generated.request_id)">
+            Copy to clipboard
+          </button>
+       </div>
     </div>
-    <div>
-      See how much the <span>{{ generated.title }}</span> was estimated for at <a href="{{ baseURL }}/get-estimation/{{ generated.request_id }}">{{ baseURL }}/get-estimation/{{ generated.request_id }}</a>.
+    <div class="well">
+        <span id="see-{{ generated.request_id }}">
+          See how much the <span>{{ generated.title }}</span> was estimated for at
+          <a href="{{ baseURL }}/get-estimation/{{ generated.request_id }}">{{ baseURL }}/get-estimation/{{ generated.request_id }}</a>.
+        </span>
+       <div>
+          <button class="btn btn-primary" (click)="copyToClipboard('see-' + generated.request_id)">
+            Copy to clipboard
+          </button>
+       </div>
     </div>
   </div>
 </div>

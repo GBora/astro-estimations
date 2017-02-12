@@ -6,7 +6,7 @@ import EstimationRequest from '../../models/estimation-request.model';
 @Component({
   selector: 'app-get-estimation-page',
   templateUrl: './get-estimation-page.component.html',
-  styleUrls: ['./get-estimation-page.component.sass'],
+  styleUrls: ['./get-estimation-page.component.scss'],
   providers: [EstimationService]
 })
 export class GetEstimationPageComponent implements OnInit {

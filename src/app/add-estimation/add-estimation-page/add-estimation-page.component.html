@@ -1,6 +1,14 @@
 <div class="col-lg-4 m-t-50">
+  <h1 *ngIf="request">Estimation for {{ request.title }}</h1>
+  <div *ngIf="request">{{ request.description }}</div>
+  <div *ngIf="request">
+    <div *ngFor="let est of request.individual_estimations">
+      estimation
+    </div>
+  </div>
   <form>
     <div class="form-group">
+      <input type="text" name="estimation_subject" placeholder="estimation subject" class="form-control">
       <button type="button" class="btn btn-primary btn-block" (click)="addEstimation()">Add estimation</button>
     </div>
   </form>

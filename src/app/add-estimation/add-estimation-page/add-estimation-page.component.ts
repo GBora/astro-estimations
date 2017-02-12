@@ -7,7 +7,7 @@ import { AuthorizationService } from '../../services/authorization.service';
 @Component({
   selector: 'app-add-estimation-page',
   templateUrl: './add-estimation-page.component.html',
-  styleUrls: ['./add-estimation-page.component.sass'],
+  styleUrls: ['./add-estimation-page.component.scss'],
   providers: [EstimationService, AuthorizationService]
 })
 
@@ -23,11 +23,15 @@ export class AddEstimationPageComponent implements OnInit {
               private authorizationService: AuthorizationService) { }
 
   addEstimation() {
+    let newEstimation= {};
     this.request.individual_estimations.push("bla bla");
     this.request.participants_ips.push(this.current_ip);
+  }
+
+  postEstimation() {
     this.estimationService.updateEstimation(this.request_id, this.request).then((response) => {
       console.log(response);
-    })
+    });
   }
 
   ngOnInit() {
