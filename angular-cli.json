@@ -19,8 +19,8 @@
       "mobile": false,
       "styles": [
         "styles.scss",
-        "../node_modules/bootstrap/dist/css/bootstrap.min.css",
-        "../node_modules/bootstrap/dist/css/bootstrap-theme.min.css"
+        "../node_modules/bootstrap-v4-dev/dist/css/bootstrap.css",
+        "../node_modules/font-awesome/css/font-awesome.css"
       ],
       "scripts": [
         "../node_modules/clipboard/dist/clipboard.js"

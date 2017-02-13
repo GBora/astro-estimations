@@ -1,6 +1,6 @@
 import { EstimationService } from '../../services/estimation.service';
 import { Component, OnInit } from '@angular/core';
-import EstimationRequest from '../../models/estimation-request.model';
+import EstimationRequest from '../../models/request/estimation-request.model';
 import { AuthorizationService } from '../../services/authorization.service';
 import { UUID } from 'angular2-uuid';
 

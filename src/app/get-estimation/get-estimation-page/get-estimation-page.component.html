@@ -1,3 +1,9 @@
-<p *ngIf="request">
-  {{ request.title }} has been estimated by {{ request.individual_estimations.length }} people up until now
-</p>
+<div *ngIf="request" class="m-t-50">
+    <div>
+        <h1>{{ request.title }}</h1>
+        <p class="m-t-50"> Estimations in total {{ request.individual_estimations.length }} </p>
+    </div>
+    <div>
+      <app-single-estimation-report *ngFor="let estimation of request.individual_estimations" [estimation]="estimation"></app-single-estimation-report>
+    </div>
+</div>

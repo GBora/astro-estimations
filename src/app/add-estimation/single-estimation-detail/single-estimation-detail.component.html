@@ -1,0 +1,36 @@
+<div class="estimation-detail">
+    <h2 class="estimation-title"
+        (hover)="switchDetails()"
+        (click)="switchDetails()">
+      {{ estimation.subject }} ({{ estimation.totalHours }} h)
+    </h2>
+    <div *ngIf="showDetails">
+      <ul>
+        <li *ngFor="let subtask of estimation.subtasks">
+            {{ subtask.title }} ({{ subtask.hours }} h)
+        </li>
+      </ul>
+      <form #signleSubtaskForm="ngForm"
+            *ngIf="addingSubtask"
+            (ngSubmit)="insertNewSubTask()">
+        <div class="form-group">
+          <input type="text" 
+                  name="subtask_title"
+                  [(ngModel)]="newSubTask.title"
+                  class="form-control">
+        </div>
+        <div class="form-group">
+          <input type="number"
+                  name="subtask_numbers"
+                  class="form-control"
+                  [(ngModel)]="newSubTask.hours">
+        </div>
+        <div class="form-group">
+          <button type="submit" class="btn btn-primary btn-block">Save</button>
+        </div>
+      </form>
+      <button class="btn btn-block btn-primary"
+              [disabled]="addingSubtask"
+              (click)="addSubtask()">Add Subtask</button>
+    </div>
+</div>

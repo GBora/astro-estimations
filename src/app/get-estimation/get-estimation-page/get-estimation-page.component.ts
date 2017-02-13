@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { EstimationService } from '../../services/estimation.service';
 import { ActivatedRoute } from '@angular/router';
-import EstimationRequest from '../../models/estimation-request.model';
+import EstimationRequest from '../../models/request/estimation-request.model';
 
 @Component({
   selector: 'app-get-estimation-page',

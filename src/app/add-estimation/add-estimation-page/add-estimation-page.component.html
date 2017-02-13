@@ -1,15 +1,33 @@
-<div class="col-lg-4 m-t-50">
-  <h1 *ngIf="request">Estimation for {{ request.title }}</h1>
-  <div *ngIf="request">{{ request.description }}</div>
-  <div *ngIf="request">
+<div class="col-lg-8">
+  <div *ngIf="request" class="m-t-50">
+    <h1>Estimation for {{ request.title }}</h1>
+    <div class="m-t-50">{{ request.description }}</div>
+  </div>
+  <div *ngIf="request" class="m-t-50">
     <div *ngFor="let est of request.individual_estimations">
-      estimation
+      <app-single-estimation-detail *ngIf="est.method === 'single'" [estimation]="est"></app-single-estimation-detail>
     </div>
   </div>
-  <form>
-    <div class="form-group">
-      <input type="text" name="estimation_subject" placeholder="estimation subject" class="form-control">
-      <button type="button" class="btn btn-primary btn-block" (click)="addEstimation()">Add estimation</button>
-    </div>
-  </form>
+  <div>
+      <form class="m-t-50 form-inline new-estimation-form"
+            #taskForm="ngForm"
+            (ngSubmit)="addEstimation()">
+        <div class="form-group">
+          <input type="text"
+                name="newEstimationSubject"
+                [(ngModel)]="newEstimationSubject"
+                placeholder="estimation subject"
+                class="form-control">
+          <button type="submit"
+                  class="btn btn-primary">
+                  <i class="fa fa-plus" aria-hidden="true"></i>
+          </button>
+        </div>
+      </form>
+  </div>
+  <div *ngIf="request" class="m-t-50">
+    <button class="btn btn-primary btn-block"
+            [disabled]="!request.individual_estimations.length"
+            (click)="postEstimation()">Post estimation</button>
+  </div>
 </div>
