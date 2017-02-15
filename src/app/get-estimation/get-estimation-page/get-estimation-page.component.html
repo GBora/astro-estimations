@@ -1,14 +1,14 @@
 <div *ngIf="request" class="m-t-50">
     <div>
-        <h1>{{ request.title }}</h1>
+        <h1 class="text-center">{{ request.title }}</h1>
         <div class="m-t-50">
             {{ request.description }}
         </div>
     </div>
-    <div class="m-t-50" *ngIf="request.method === 'single'">
+    <div class="m-t-50 card-group" *ngIf="request.method === 'single'">
       <app-single-estimation-report *ngFor="let estimation of request.individual_estimations" [estimation]="estimation"></app-single-estimation-report>
     </div>
-    <div class="m-t-50" *ngIf="request.method === 'min-max'">
+    <div class="m-t-50 card-group" *ngIf="request.method === 'min-max'">
       <app-min-max-estimation-report *ngFor="let estimation of request.individual_estimations" [estimation]="estimation"></app-min-max-estimation-report>
     </div>
 </div>

@@ -8,9 +8,15 @@ import MinMaxEstimationTask from '../../models/task/min-max-estimation-task.mode
 })
 export class MinMaxEstimationReportComponent implements OnInit {
 
+  showDetails = false;
+
   @Input() estimation: MinMaxEstimationTask;
 
   constructor() { }
+
+  switchDetails() {
+    this.showDetails = !this.showDetails;
+  }
 
   ngOnInit() {
   }

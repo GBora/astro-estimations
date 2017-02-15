@@ -5,6 +5,7 @@ class MinMaxEstimationTask extends EstimationTask {
     min_hours: number;
     max_hours: number;
     subtasks: Array<MinMaxSubTask>;
+    questions: Array<string>;
 }
 
 export default MinMaxEstimationTask;
