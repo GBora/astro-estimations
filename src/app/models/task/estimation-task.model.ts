@@ -1,5 +1,5 @@
 class EstimationTask{
-  subject: string;
+  title: string;
   method: string;
 }
 

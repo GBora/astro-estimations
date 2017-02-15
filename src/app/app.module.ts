@@ -11,6 +11,8 @@ import { AddEstimationPageComponent } from './add-estimation/add-estimation-page
 import { GetEstimationPageComponent } from './get-estimation/get-estimation-page/get-estimation-page.component';
 import { SingleEstimationDetailComponent } from './add-estimation/single-estimation-detail/single-estimation-detail.component';
 import { SingleEstimationReportComponent } from './get-estimation/single-estimation-report/single-estimation-report.component';
+import { MinMaxEstimationDetailComponent } from './add-estimation/min-max-estimation-detail/min-max-estimation-detail.component';
+import { MinMaxEstimationReportComponent } from './get-estimation/min-max-estimation-report/min-max-estimation-report.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +21,9 @@ import { SingleEstimationReportComponent } from './get-estimation/single-estimat
     AddEstimationPageComponent,
     GetEstimationPageComponent,
     SingleEstimationDetailComponent,
-    SingleEstimationReportComponent
+    SingleEstimationReportComponent,
+    MinMaxEstimationDetailComponent,
+    MinMaxEstimationReportComponent
   ],
   imports: [
     BrowserModule,

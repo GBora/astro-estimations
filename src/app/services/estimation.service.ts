@@ -2,10 +2,11 @@ import { Injectable } from '@angular/core';
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import { Observable } from 'rxjs/Rx';
 import 'rxjs/add/operator/toPromise';
-import EstimationRequest from '../models/estimation-request.model';
+import EstimationRequest from '../models/request/estimation-request.model';
 
 @Injectable()
 export class EstimationService {
+  baseURL = 'https://astro-estimations-back.herokuapp.com';
 
   postEstimation(estimation: EstimationRequest): Promise<Response> {
       let headers = new Headers();
@@ -16,7 +17,9 @@ export class EstimationService {
           headers: headers,
       });
 
-      return this.http.post('http://localhost:8000/new-estimation', JSON.stringify(estimation), requestOptions)
+      let url = this.baseURL + '/new-estimation';
+
+      return this.http.post(url, JSON.stringify(estimation), requestOptions)
                       .toPromise();
   }
 
@@ -29,14 +32,14 @@ export class EstimationService {
           headers: headers,
       });
 
-      let url = 'http://localhost:8000/estimation/' + id;
+      let url = this.baseURL + '/estimation/' + id;
 
       return this.http.put(url, JSON.stringify(estimation), requestOptions)
                       .toPromise();
   }
 
   getEstimation(id: string): Promise<Response> {
-    let url = 'http://localhost:8000/estimation/' + id;
+    let url = this.baseURL + '/estimation/' + id;
           return this.http.get(url)
                           .toPromise();
   }

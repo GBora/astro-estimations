@@ -1,11 +1,11 @@
 <div class="card">
   <div class="card-block" (click)="switchDetails()">
-    <h4 class="card-title">{{ estimation.title }} ({{ estimation.total_hours }} h)</h4>
+    <h4 class="card-title">{{ estimation.title }} ({{ estimation.min_hours }} h - {{ estimation.max_hours }} h )</h4>
   </div>
   <div class="card-block" *ngIf="showDetails">
       <ul class="list-group">
         <li *ngFor="let subtask of estimation.subtasks" class="list-group-item">
-            {{ subtask.title }} ({{ subtask.hours }} h)
+            {{ subtask.title }} ({{ subtask.min }} h - {{ subtask.max }} h)
         </li>
       </ul>
   </div>
@@ -23,13 +23,22 @@
           </div>
         </div>
         <div class="form-group">
-          <label for="subtask_numbers" class="col-sm-3">Hours needed</label>
+          <label for="subtask_min" class="col-sm-3"> Min hours needed</label>
           <div class="col-sm-9">
             <input type="number"
-                    name="subtask_numbers"
+                    name="subtask_min"
                     class="form-control"
-                    [(ngModel)]="newSubTask.hours">
+                    [(ngModel)]="newSubTask.min">
           </div>
+        </div>
+        <div class="form-group">
+            <label for="subtask_max" class="col-sm-3"> Max hours needed</label>
+            <div class="col-sm-9">
+            <input type="number"
+                    name="subtask_max"
+                    class="form-control"
+                    [(ngModel)]="newSubTask.max">
+            </div>
         </div>
         <div class="form-group">
           <button type="submit" class="btn btn-primary btn-block">Save</button>

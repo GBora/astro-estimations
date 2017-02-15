@@ -29,11 +29,18 @@ export class SingleEstimationDetailComponent implements OnInit {
     this.addingSubtask = true;
   }
 
+  updateHours() {
+    this.estimation.total_hours = 0;
+        this.estimation.subtasks.forEach((st) => {
+        this.estimation.total_hours += st.hours;
+    });
+  }
+
   insertNewSubTask() {
     this.estimation.subtasks.push(_.cloneDeep(this.newSubTask));
     this.newSubTask = null;
     this.addingSubtask = false;
-    this.estimation.updateHours();
+    this.updateHours();
   }
 
 }

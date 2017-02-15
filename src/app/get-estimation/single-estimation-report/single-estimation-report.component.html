@@ -1,8 +1,11 @@
-<div *ngIf="estimation" class="col-lg-4 single-estimation-report">
-    <h2>{{ estimation.subject }} {{ estimation.totalHours }} h </h2>
-    <ul>
-      <li *ngFor="let subtask of estimation.subtasks">
-        {{ subtask.subject }} {{ subtask.hours }} h
+<div *ngIf="estimation" class="card single-estimation-report">
+  <div class="card-block">
+    <h3 class="card-title">{{ estimation.title }} {{ estimation.total_hours }} h </h3>
+    <p class="card-text">Includes the following sub tasks:</p>
+    <ul class="list-group">
+      <li *ngFor="let subtask of estimation.subtasks" class="list-group-item">
+        {{ subtask.title }} {{ subtask.hours }} h
       </li>
     </ul>
+  </div>
 </div>

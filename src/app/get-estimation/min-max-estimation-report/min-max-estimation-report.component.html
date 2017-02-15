@@ -1,0 +1,12 @@
+<div *ngIf="estimation" class="card min-max-estimation-report">
+  <div class="card-block">
+    <h3 class="card-title">{{ estimation.title }} {{ estimation.min_hours }} h - {{ estimation.max_hours }} h </h3>
+    <p class="card-text">Includes the following sub tasks:</p>
+    <ul class="list-group">
+      <li *ngFor="let subtask of estimation.subtasks" class="list-group-item">
+        {{ subtask.title }} {{ subtask.min }} h - {{ subtask.max }} h
+      </li>
+    </ul>
+  </div>
+</div>
+
