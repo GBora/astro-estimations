@@ -1,6 +1,10 @@
 <div class="card">
   <div class="card-block" (click)="switchDetails()">
-    <h4 class="card-title">{{ estimation.title }} ({{ estimation.total_hours }} h)</h4>
+    <h4 class="card-title">
+      {{ estimation.title }} ({{ estimation.total_hours }} h)
+      <i *ngIf="!showDetails" class="fa fa-plus f-r pointer" aria-hidden="true"></i>
+      <i *ngIf="showDetails" class="fa fa-minus f-r pointer" aria-hidden="true"></i>
+    </h4>
   </div>
   <div class="card-block" *ngIf="showDetails">
       <ul class="list-group">

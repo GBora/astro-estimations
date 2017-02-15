@@ -41,31 +41,38 @@
       <button class="btn btn-block btn-primary" (click)="addNewEstimation()">New Estimation</button>
     </div>
   </div>
-  <div class="col-lg-4 m-t-50">
+  <div class="col-lg-8 m-t-50">
     <h4 *ngIf="generatedEstimations.length">Recent estimations asked for</h4>
-    <div *ngFor="let generated of generatedEstimations" class="m-t-50">
-      <div class="m-t-25">
-        <span id="add-{{ generated.request_id }}">
-            Estimate the <span>{{ generated.title }}</span> at
-            <a href="{{ baseURL }}/add-estimation/{{ generated.request_id }}">{{ baseURL }}/add-estimation/{{ generated.request_id }}</a>.
-            </span>
-        <div>
-            <button class="btn btn-primary" (click)="copyToClipboard('add-' + generated.request_id)">
-              Copy to clipboard
-            </button>
-        </div>
-      </div>
-      <div class="m-t-25">
-          <span id="see-{{ generated.request_id }}">
-            See how much the <span>{{ generated.title }}</span> was estimated for at
-            <a href="{{ baseURL }}/get-estimation/{{ generated.request_id }}">{{ baseURL }}/get-estimation/{{ generated.request_id }}</a>.
-          </span>
-        <div>
-            <button class="btn btn-primary" (click)="copyToClipboard('see-' + generated.request_id)">
-              Copy to clipboard
-            </button>
-        </div>
-      </div>
+    <div class="container">
+          <div *ngFor="let generated of generatedEstimations" class="m-t-50 row card-deck">
+              <div class="card">
+                <div class="card-block">
+                  <h4 class="card-title">{{ generated.title }}</h4>
+                  <p class="card-text" id="add-{{ generated.request_id }}"> Estimate the <span>{{ generated.title }}</span> at
+                    <a href="{{ baseURL }}/add-estimation/{{ generated.request_id }}">{{ baseURL }}/add-estimation/{{ generated.request_id }}</a>.
+                  </p>
+                </div>
+                <div class="card-footer">
+                    <button class="btn btn-primary" (click)="copyToClipboard('add-' + generated.request_id)">
+                      Copy to clipboard
+                    </button>
+                </div>
+              </div>
+              <div class="card">
+                <div class="card-block">
+                  <h4 class="card-title">{{ generated.title }}</h4>
+                  <p class="card-text" id="see-{{ generated.request_id }}"> 
+                    See how much the <span>{{ generated.title }}</span> was estimated for at
+                    <a href="{{ baseURL }}/get-estimation/{{ generated.request_id }}">{{ baseURL }}/get-estimation/{{ generated.request_id }}</a>.
+                  </p>
+                </div>
+                <div class="card-footer">
+                    <button class="btn btn-primary" (click)="copyToClipboard('see-' + generated.request_id)">
+                      Copy to clipboard
+                    </button>
+                </div>
+              </div>
+          </div>
     </div>
   </div>
 </div>
