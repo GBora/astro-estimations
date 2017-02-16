@@ -13,6 +13,9 @@ import { SingleEstimationDetailComponent } from './add-estimation/single-estimat
 import { SingleEstimationReportComponent } from './get-estimation/single-estimation-report/single-estimation-report.component';
 import { MinMaxEstimationDetailComponent } from './add-estimation/min-max-estimation-detail/min-max-estimation-detail.component';
 import { MinMaxEstimationReportComponent } from './get-estimation/min-max-estimation-report/min-max-estimation-report.component';
+import { MinMaxSubtaskFormComponent } from './add-estimation/min-max-subtask-form/min-max-subtask-form.component';
+import { MinMaxQuestionFormComponent } from './add-estimation/min-max-question-form/min-max-question-form.component';
+import { PossibleSubtaskFormComponent } from './add-estimation/possible-subtask-form/possible-subtask-form.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +26,10 @@ import { MinMaxEstimationReportComponent } from './get-estimation/min-max-estima
     SingleEstimationDetailComponent,
     SingleEstimationReportComponent,
     MinMaxEstimationDetailComponent,
-    MinMaxEstimationReportComponent
+    MinMaxEstimationReportComponent,
+    MinMaxSubtaskFormComponent,
+    MinMaxQuestionFormComponent,
+    PossibleSubtaskFormComponent
   ],
   imports: [
     BrowserModule,

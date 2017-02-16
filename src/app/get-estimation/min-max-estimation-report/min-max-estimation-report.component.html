@@ -5,11 +5,33 @@
       <i *ngIf="!showDetails" class="fa fa-plus f-r pointer" aria-hidden="true"></i>
       <i *ngIf="showDetails" class="fa fa-minus f-r pointer" aria-hidden="true"></i>
     </h3>
+    <div *ngIf="estimation.potttential_subtasks.length">
+      <p>Includes possible subtasks: {{ estimation.potttential_subtasks.length }} totalling {{ estimation.pottential_min }} h - {{ estimation.pottential_max }} h</p>
+    </div>
+    <div>
+      <p>Questions: {{ estimation.questions.length }}</p>
+    </div>
     <div *ngIf="showDetails">
       <p class="card-text">Includes the following sub tasks:</p>
       <ul class="list-group">
         <li *ngFor="let subtask of estimation.subtasks" class="list-group-item">
           {{ subtask.title }} {{ subtask.min }} h - {{ subtask.max }} h
+        </li>
+      </ul>
+    </div>
+    <div *ngIf="showDetails && estimation.potttential_subtasks.length">
+      <p class="card-text">Includes the following <strong>possible</strong> sub tasks:</p>
+      <ul class="list-group">
+        <li *ngFor="let subtask of estimation.potttential_subtasks" class="list-group-item">
+          {{ subtask.title }} {{ subtask.min }} h - {{ subtask.max }} h
+        </li>
+      </ul>
+    </div>
+    <div *ngIf="showDetails && estimation.questions.length">
+      <p class="card-text">Includes the following questions:</p>
+      <ul class="list-group">
+        <li *ngFor="let question of estimation.questions" class="list-group-item">
+          {{ question }}
         </li>
       </ul>
     </div>

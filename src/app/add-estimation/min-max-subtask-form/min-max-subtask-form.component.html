@@ -1,0 +1,33 @@
+<form #singleSubtaskForm="ngForm"
+      (ngSubmit)="addNewSubtask()">
+  <div class="form-group clearfix">
+    <label for="subtask_title" class="col-sm-3">Subtask title</label>
+    <div class="col-sm-9">
+      <input type="text" 
+              name="subtask_title"
+              [(ngModel)]="subtask.title"
+              class="form-control">
+    </div>
+  </div>
+  <div class="form-group clearfix">
+    <label for="subtask_min" class="col-sm-3">Min hours needed</label>
+    <div class="col-sm-9">
+      <input type="number"
+              name="subtask_min"
+              class="form-control"
+              [(ngModel)]="subtask.min">
+    </div>
+  </div>
+  <div class="form-group clearfix">
+      <label for="subtask_max" class="col-sm-3">Max hours needed</label>
+      <div class="col-sm-9">
+      <input type="number"
+              name="subtask_max"
+              class="form-control"
+              [(ngModel)]="subtask.max">
+      </div>
+  </div>
+  <div class="form-group clearfix">
+    <button type="submit" class="btn btn-primary btn-block">Save</button>
+  </div>
+</form>

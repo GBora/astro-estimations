@@ -6,7 +6,8 @@
         <i *ngIf="showDetails" class="fa fa-minus f-r pointer" aria-hidden="true"></i>
       </h4>
   </div>
-  <div class="card-block" *ngIf="showDetails">
+  <div class="card-block" *ngIf="showDetails && estimation.subtasks.length">
+      <p>Subtasks:</p>
       <ul class="list-group">
         <li *ngFor="let subtask of estimation.subtasks" class="list-group-item">
             {{ subtask.title }} ({{ subtask.min }} h - {{ subtask.max }} h)
@@ -14,44 +15,43 @@
       </ul>
   </div>
   <div class="card-block" *ngIf="showDetails">
-      <form #signleSubtaskForm="ngForm"
-            *ngIf="addingSubtask"
-            (ngSubmit)="insertNewSubTask()">
-        <div class="form-group">
-          <label for="subtask_title" class="col-sm-3">Subtask title</label>
-          <div class="col-sm-9">
-            <input type="text" 
-                    name="subtask_title"
-                    [(ngModel)]="newSubTask.title"
-                    class="form-control">
-          </div>
-        </div>
-        <div class="form-group">
-          <label for="subtask_min" class="col-sm-3"> Min hours needed</label>
-          <div class="col-sm-9">
-            <input type="number"
-                    name="subtask_min"
-                    class="form-control"
-                    [(ngModel)]="newSubTask.min">
-          </div>
-        </div>
-        <div class="form-group">
-            <label for="subtask_max" class="col-sm-3"> Max hours needed</label>
-            <div class="col-sm-9">
-            <input type="number"
-                    name="subtask_max"
-                    class="form-control"
-                    [(ngModel)]="newSubTask.max">
-            </div>
-        </div>
-        <div class="form-group">
-          <button type="submit" class="btn btn-primary btn-block">Save</button>
-        </div>
-      </form>
+      <app-min-max-subtask-form *ngIf="addingSubtask" [subtask]="newSubTask" (onSubmit)="insertNewSubTask()"></app-min-max-subtask-form>
   </div>
   <div class="card-block" *ngIf="showDetails">
       <button class="btn btn-block btn-primary"
               [disabled]="addingSubtask"
               (click)="addSubtask()">Add Subtask</button>
+  </div>
+    <div class="card-block" *ngIf="showDetails && estimation.potttential_subtasks.length">
+        <p>Pottential subtasks:</p>
+        <ul class="list-group">
+        <li *ngFor="let subtask of estimation.potttential_subtasks" class="list-group-item">
+            {{ subtask.title }} ({{ subtask.min }} h - {{ subtask.max }} h)
+        </li>
+        </ul>
+    </div>
+    <div class="card-block" *ngIf="showDetails">
+        <app-min-max-subtask-form *ngIf="addingPossible" [subtask]="newPossible" (onSubmit)="insertNewPossible()"></app-min-max-subtask-form>
+    </div>
+    <div class="card-block" *ngIf="showDetails">
+        <button class="btn btn-block btn-primary"
+                [disabled]="addingPossible"
+                (click)="addPossible()">Add Pottential Subtask</button>
+    </div>
+  <div class="card-block" *ngIf="showDetails && estimation.questions.length">
+      <p>Questions:</p>
+      <ul class="list-group">
+        <li *ngFor="let question of estimation.questions" class="list-group-item">
+            {{ question }}
+        </li>
+      </ul>
+  </div>
+  <div class="card-block" *ngIf="showDetails">
+      <app-min-max-question-form *ngIf="addingQuestion" [question]="newQuestion" (onSubmit)="insertNewQuestion($event)"></app-min-max-question-form>
+  </div>
+  <div class="card-block" *ngIf="showDetails">
+      <button class="btn btn-block btn-primary"
+              [disabled]="addingQuestion"
+              (click)="addQuestion()">Add Question</button>
   </div>
 </div>

@@ -44,8 +44,11 @@ export class AddEstimationPageComponent implements OnInit {
     minMaxEstimation.title = this.new_estimation_title;
     minMaxEstimation.max_hours = 0;
     minMaxEstimation.min_hours = 0;
+    minMaxEstimation.pottential_min = 0;
+    minMaxEstimation.pottential_max = 0;
     minMaxEstimation.subtasks = [];
     minMaxEstimation.questions = [];
+    minMaxEstimation.potttential_subtasks = [];
     this.new_estimation_title = null;
     return minMaxEstimation;
   }
