@@ -10,7 +10,9 @@
       <p>Subtasks:</p>
       <ul class="list-group">
         <li *ngFor="let subtask of estimation.subtasks" class="list-group-item">
-            {{ subtask.title }} ({{ subtask.min }} h - {{ subtask.max }} h)
+            {{ subtask.title }} ({{ subtask.min }} h - {{ subtask.max }} h) 
+            <i class="fa fa-trash f-r pointer p-l-10" (click)="deleteSubtask(subtask.subtask_id)" aria-hidden="true"></i>
+            <i class="fa fa-pencil f-r pointer p-l-10" (click)="editSubtask(subtask.subtask_id)" aria-hidden="true"></i>
         </li>
       </ul>
   </div>
@@ -19,7 +21,7 @@
   </div>
   <div class="card-block" *ngIf="showDetails">
       <button class="btn btn-block btn-primary"
-              [disabled]="addingSubtask"
+              *ngIf="!addingSubtask"
               (click)="addSubtask()">Add Subtask</button>
   </div>
     <div class="card-block" *ngIf="showDetails && estimation.potttential_subtasks.length">
@@ -35,14 +37,16 @@
     </div>
     <div class="card-block" *ngIf="showDetails">
         <button class="btn btn-block btn-primary"
-                [disabled]="addingPossible"
+                *ngIf="!addingPossible"
                 (click)="addPossible()">Add Pottential Subtask</button>
     </div>
   <div class="card-block" *ngIf="showDetails && estimation.questions.length">
       <p>Questions:</p>
       <ul class="list-group">
         <li *ngFor="let question of estimation.questions" class="list-group-item">
-            {{ question }}
+            {{ question }} 
+            <i class="fa fa-trash f-r pointer" aria-hidden="true"></i>
+            <i class="fa fa-pencil f-r pointer" aria-hidden="true"></i>
         </li>
       </ul>
   </div>
@@ -51,7 +55,7 @@
   </div>
   <div class="card-block" *ngIf="showDetails">
       <button class="btn btn-block btn-primary"
-              [disabled]="addingQuestion"
+              *ngIf="!addingQuestion"
               (click)="addQuestion()">Add Question</button>
   </div>
 </div>

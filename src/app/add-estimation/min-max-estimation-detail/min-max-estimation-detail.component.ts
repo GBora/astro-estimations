@@ -26,16 +26,28 @@ export class MinMaxEstimationDetailComponent implements OnInit {
   constructor() { }
 
   switchDetails() {
-    console.log(this.estimation.creator_ip, this.current_ip)
-    if (this.estimation.creator_ip && this.estimation.creator_ip === this.current_ip) {
-      this.showDetails = !this.showDetails;
-    }
+    this.showDetails = !this.showDetails;
   }
 
   addSubtask() {
     this.newSubTask =  new MinMaxSubTask();
     this.newSubTask.subtask_id = UUID.UUID();
     this.addingSubtask = true;
+  }
+
+  editSubtask(id: string) {
+    let taskToEdit = _.remove(this.estimation.subtasks, (st) => {
+      return st.subtask_id === id;
+    });
+    this.newSubTask = taskToEdit[0];
+    this.addingSubtask = true;
+  }
+
+  deleteSubtask(id: string) {
+    let taskToEdit = _.remove(this.estimation.subtasks, (st) => {
+      return st.subtask_id === id;
+    });
+    this.updateHours();
   }
 
   addQuestion() {
