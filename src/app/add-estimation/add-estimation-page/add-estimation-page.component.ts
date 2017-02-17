@@ -51,6 +51,7 @@ export class AddEstimationPageComponent implements OnInit {
     minMaxEstimation.questions = [];
     minMaxEstimation.potttential_subtasks = [];
     minMaxEstimation.task_id = UUID.UUID();
+    minMaxEstimation.creator_ip = this.current_ip;
     this.new_estimation_title = null;
     return minMaxEstimation;
   }

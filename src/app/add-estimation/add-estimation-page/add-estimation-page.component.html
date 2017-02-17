@@ -6,7 +6,7 @@
   <div *ngIf="request" class="m-t-50">
     <div *ngFor="let est of request.individual_estimations">
       <app-single-estimation-detail *ngIf="est.method === 'single'" [estimation]="est"></app-single-estimation-detail>
-      <app-min-max-estimation-detail *ngIf="est.method === 'min-max'" [estimation]="est"></app-min-max-estimation-detail>
+      <app-min-max-estimation-detail *ngIf="est.method === 'min-max'" [estimation]="est" [current_ip]="current_ip"></app-min-max-estimation-detail>
     </div>
   </div>
   <div>

@@ -2,6 +2,8 @@ import { Component, OnInit, Input } from '@angular/core';
 import MinMaxEstimationTask from '../../models/task/min-max-estimation-task.model';
 import MinMaxSubTask from '../../models/sub-tasks/min-max-subtask.model';
 import * as _ from 'lodash';
+import { UUID } from 'angular2-uuid';
+
 
 @Component({
   selector: 'app-min-max-estimation-detail',
@@ -19,15 +21,20 @@ export class MinMaxEstimationDetailComponent implements OnInit {
   newPossible: MinMaxSubTask = null;
   newQuestion: string = null;
   showDetails = false;
+  @Input() current_ip: string;
 
   constructor() { }
 
   switchDetails() {
-    this.showDetails = !this.showDetails;
+    console.log(this.estimation.creator_ip, this.current_ip)
+    if (this.estimation.creator_ip && this.estimation.creator_ip === this.current_ip) {
+      this.showDetails = !this.showDetails;
+    }
   }
 
   addSubtask() {
     this.newSubTask =  new MinMaxSubTask();
+    this.newSubTask.subtask_id = UUID.UUID();
     this.addingSubtask = true;
   }
 
@@ -38,6 +45,7 @@ export class MinMaxEstimationDetailComponent implements OnInit {
 
   addPossible() {
     this.newPossible =  new MinMaxSubTask();
+    this.newPossible.subtask_id = UUID.UUID();
     this.addingPossible = true;
   }
 
