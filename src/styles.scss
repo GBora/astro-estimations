@@ -1,3 +1,7 @@
 @import 'scss/base/_base';
 @import 'scss/base/_helpers';
 @import 'scss/layout/_header';
+
+.card-deck .card {
+    vertical-align: 0 !important;
+}

@@ -6,6 +6,7 @@ import { AuthorizationService } from '../../services/authorization.service';
 import SimpleEstimationTask from '../../models/task/simple-estimation-task.model';
 import SimpleSubTask from '../../models/sub-tasks/simple-sub-task';
 import MinMaxEstimationTask from '../../models/task/min-max-estimation-task.model';
+import { UUID } from 'angular2-uuid';
 
 @Component({
   selector: 'app-add-estimation-page',
@@ -49,6 +50,7 @@ export class AddEstimationPageComponent implements OnInit {
     minMaxEstimation.subtasks = [];
     minMaxEstimation.questions = [];
     minMaxEstimation.potttential_subtasks = [];
+    minMaxEstimation.task_id = UUID.UUID();
     this.new_estimation_title = null;
     return minMaxEstimation;
   }

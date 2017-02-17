@@ -8,7 +8,12 @@
     <div class="m-t-50 card-group" *ngIf="request.method === 'single'">
       <app-single-estimation-report *ngFor="let estimation of request.individual_estimations" [estimation]="estimation"></app-single-estimation-report>
     </div>
-    <div class="m-t-50 card-group" *ngIf="request.method === 'min-max'">
-      <app-min-max-estimation-report *ngFor="let estimation of request.individual_estimations" [estimation]="estimation"></app-min-max-estimation-report>
+    <div class="card-deck-wrapper m-t-50">     
+        <div class="card-deck" *ngIf="request.method === 'min-max'">
+        <app-min-max-estimation-report *ngFor="let estimation of request.individual_estimations" [estimation]="estimation"></app-min-max-estimation-report>
+        </div>
     </div>
+    <!--<div class="card-columns m-t-50" *ngIf="request.method === 'min-max'">
+        <app-min-max-estimation-report *ngFor="let estimation of request.individual_estimations" [estimation]="estimation"></app-min-max-estimation-report>
+    </div>-->
 </div>
