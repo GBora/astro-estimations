@@ -6,6 +6,7 @@ class EstimationRequest {
     request_id: string;
     individual_estimations: Array<any>;
     participants_ips: Array<string>;
+    files: Array<string>;
 }
 
 export default EstimationRequest;

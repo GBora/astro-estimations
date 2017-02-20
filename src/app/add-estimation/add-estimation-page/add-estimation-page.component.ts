@@ -25,6 +25,8 @@ export class AddEstimationPageComponent implements OnInit {
 
   new_estimation_title: string;
 
+  showSuccessMessage = false;
+
   constructor(private estimationService: EstimationService,
               private route: ActivatedRoute,
               private authorizationService: AuthorizationService) { }
@@ -57,6 +59,7 @@ export class AddEstimationPageComponent implements OnInit {
   }
 
   addEstimation() {
+    this.showSuccessMessage =  false;
     let newEstimation;
     switch (this.request.method) {
       case 'single': newEstimation = this.makeSimpleEstimation(); break;
@@ -69,6 +72,7 @@ export class AddEstimationPageComponent implements OnInit {
   postEstimation() {
     this.estimationService.updateEstimation(this.request_id, this.request).then((response) => {
       console.log(response);
+      this.showSuccessMessage = true;
     });
   }
 

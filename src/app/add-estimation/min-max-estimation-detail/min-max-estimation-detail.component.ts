@@ -16,9 +16,7 @@ export class MinMaxEstimationDetailComponent implements OnInit {
 
   addingSubtask = false;
   addingQuestion = false;
-  addingPossible = false;
   newSubTask: MinMaxSubTask = null;
-  newPossible: MinMaxSubTask = null;
   newQuestion: string = null;
   showDetails = false;
   @Input() current_ip: string;
@@ -55,14 +53,12 @@ export class MinMaxEstimationDetailComponent implements OnInit {
     this.addingQuestion = true;
   }
 
-  addPossible() {
-    this.newPossible =  new MinMaxSubTask();
-    this.newPossible.subtask_id = UUID.UUID();
-    this.addingPossible = true;
-  }
-
-  insertNewSubTask() {
-    this.estimation.subtasks.push(_.cloneDeep(this.newSubTask));
+  insertNewSubTask(event) {
+    if (event) {
+      this.estimation.potttential_subtasks.push(_.cloneDeep(this.newSubTask));
+    } else {
+      this.estimation.subtasks.push(_.cloneDeep(this.newSubTask));
+    }
     this.newSubTask = null;
     this.addingSubtask = false;
     this.updateHours();
@@ -72,13 +68,6 @@ export class MinMaxEstimationDetailComponent implements OnInit {
     this.estimation.questions.push(event);
     this.newQuestion = null;
     this.addingQuestion = false;
-  }
-
-  insertNewPossible() {
-    this.estimation.potttential_subtasks.push(_.cloneDeep(this.newPossible));
-    this.newPossible = null;
-    this.addingPossible = false;
-    this.updateHours();
   }
 
   updateHours() {

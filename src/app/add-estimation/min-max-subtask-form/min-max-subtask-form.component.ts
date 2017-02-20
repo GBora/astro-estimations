@@ -10,9 +10,10 @@ export class MinMaxSubtaskFormComponent implements OnInit {
 
   @Input() subtask: MinMaxSubTask;
   @Output() onSubmit: EventEmitter<any> = new EventEmitter();
+  isPossible = false;
 
   addNewSubtask() {
-    this.onSubmit.emit(true);
+    this.onSubmit.emit(this.isPossible);
   }
 
   constructor() { }

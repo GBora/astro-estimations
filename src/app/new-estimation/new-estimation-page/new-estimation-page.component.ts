@@ -17,6 +17,7 @@ export class NewEstimationPageComponent implements OnInit {
   current_ip: string;
   generatedEstimations: Array<EstimationRequest> = [];
   baseURL: string;
+  uploadcare = null;
 
   constructor(private authorizationSerive: AuthorizationService, private estimationService: EstimationService) { }
 
@@ -25,10 +26,23 @@ export class NewEstimationPageComponent implements OnInit {
     this.request = new EstimationRequest();
     this.request.individual_estimations = [];
     this.request.participants_ips = [];
+    this.request.files = [];
     this.request.request_id = UUID.UUID();
     this.authorizationSerive.getIP().then( (reply) => {
       this.current_ip = reply.json().ip;
       this.request.creator_ip = this.current_ip;
+    });
+    this.uploadcare = window['uploadcare'];
+
+  }
+
+  uploadFile(request: EstimationRequest) {
+    this.uploadcare.openDialog(null, {
+      multiple: true
+    }).done(function(file) {
+      file.promise().done(function(fileInfo){
+        request.files.push(fileInfo.cdnUrl);
+      });
     });
   }
 

@@ -21,14 +21,26 @@
                     name="details"
                     [(ngModel)]="request.description"></textarea>
         </div>
+        <div class="form-group clearfix">
+          <label class="col-lg-3 form-control-label" for="estimation_method">Method</label>
+          <div class="col-lg-9">
+            <select class="form-control"
+                    name="method"
+                    name="estimation_method"
+                    required
+                    [(ngModel)]="request.method">
+              <option value="single">Simple estimation</option>
+              <option value="min-max">Min-max estimation</option>
+            </select>
+          </div>
+        </div>
         <div class="form-group">
-          <select class="form-control"
-                  name="method"
-                  required
-                  [(ngModel)]="request.method">
-            <option value="single">Simple estimation</option>
-            <option value="min-max">Min-max estimation</option>
-          </select>
+          <ul>
+            <li *ngFor="let file of request.files">
+              <a href="{{file}}">file</a>
+            </li>
+          </ul>
+          <button type="button" class="btn btn-primary btn-block" [disabled]="!estimationForm.form.valid" (click)="uploadFile(request)">Upload file</button>
         </div>
         <div class="form-group">
           <span class="input-group-btn">
@@ -42,36 +54,31 @@
   </div>
   <div class="col-lg-8 m-t-50">
     <h4 *ngIf="generatedEstimations.length">Recent estimations asked for</h4>
-    <div class="container">
-          <div *ngFor="let generated of generatedEstimations" class="m-t-50 row card-deck">
-              <div class="card">
-                <div class="card-block">
-                  <h4 class="card-title">{{ generated.title }}</h4>
-                  <p class="card-text" id="add-{{ generated.request_id }}"> Estimate the <span>{{ generated.title }}</span> at
+    <ol>
+      <li *ngFor="let generated of generatedEstimations">
+        {{ generated.title }}
+        <ul>
+          <li>
+            <span class="card-text" id="add-{{ generated.request_id }}"> Estimate the <span>{{ generated.title }}</span> at
                     <a href="{{ baseURL }}/add-estimation/{{ generated.request_id }}">{{ baseURL }}/add-estimation/{{ generated.request_id }}</a>.
-                  </p>
-                </div>
-                <div class="card-footer">
-                    <button class="btn btn-primary" (click)="copyToClipboard('add-' + generated.request_id)">
-                      Copy to clipboard
-                    </button>
-                </div>
-              </div>
-              <div class="card">
-                <div class="card-block">
-                  <h4 class="card-title">{{ generated.title }}</h4>
-                  <p class="card-text" id="see-{{ generated.request_id }}"> 
-                    See how much the <span>{{ generated.title }}</span> was estimated for at
-                    <a href="{{ baseURL }}/get-estimation/{{ generated.request_id }}">{{ baseURL }}/get-estimation/{{ generated.request_id }}</a>.
-                  </p>
-                </div>
-                <div class="card-footer">
-                    <button class="btn btn-primary" (click)="copyToClipboard('see-' + generated.request_id)">
-                      Copy to clipboard
-                    </button>
-                </div>
-              </div>
-          </div>
-    </div>
+            </span>
+            <i class="fa fa-clipboard pointer" (click)="copyToClipboard('add-' + generated.request_id)" aria-hidden="true"></i>
+          </li>
+          <li>
+            <span class="card-text" id="see-{{ generated.request_id }}"> 
+              See how much the <span>{{ generated.title }}</span> was estimated for at
+              <a href="{{ baseURL }}/get-estimation/{{ generated.request_id }}">{{ baseURL }}/get-estimation/{{ generated.request_id }}</a>.
+            </span>
+            <i class="fa fa-clipboard pointer" (click)="copyToClipboard('see-' + generated.request_id)" aria-hidden="true"></i>
+          </li>
+        </ul>
+      </li>
+    </ol>
+    <h2>Help</h2>
+    <p><strong>Request</strong>: an request for the estimation of the project needs the name of the project in question, a small description, a
+     method of estimation and if needed one can upload files like design documents or other helpfull things.</p>
+    <p><strong>Methods</strong>: for the time being one can request estimations only in the simple method <em>task X will take 5 hours</em> or 
+     the min max method <em>task X will take from 5 hours to 7 hours</em>.</p>
+    <p>The min max method should be used as it additionally allows for if/then subtasks and additional questions</p>
   </div>
 </div>

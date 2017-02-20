@@ -1,39 +1,71 @@
-<div class="col-lg-8">
+<div class="col-lg-12">
   <div *ngIf="request" class="m-t-50">
-    <h1>Estimation for {{ request.title }}</h1>
-    <div class="m-t-50">{{ request.description }}</div>
-  </div>
-  <div *ngIf="request" class="m-t-50">
-    <div *ngFor="let est of request.individual_estimations">
-      <app-single-estimation-detail *ngIf="est.method === 'single'" [estimation]="est"></app-single-estimation-detail>
-      <app-min-max-estimation-detail *ngIf="est.method === 'min-max'" [estimation]="est" [current_ip]="current_ip"></app-min-max-estimation-detail>
+    <h1 class="text-center">Estimation for {{ request.title }}</h1>
+    <div class="m-t-50 col-lg-12">{{ request.description }}</div>
+    <div class="p-t-50" *ngIf="request.files.length > 0">
+        Attached files:
+      <ul>
+        <li *ngFor="let file of request.files">
+          <a href="{{ file }}">file</a>
+        </li>
+      </ul>
     </div>
   </div>
-  <div>
-      <form class="m-t-50"
-            #taskForm="ngForm"
-            (ngSubmit)="addEstimation()">
-        <div class="form-group row">
-          <label for="new_estimation_title" class="col-sm-3 col-form-label">Task title</label>
-          <div class="col-sm-9">
-            <input type="text"
-                  name="new_estimation_title"
-                  [(ngModel)]="new_estimation_title"
-                  placeholder="Task title"
-                  class="form-control">
+  <div class="col-lg-6 col-sm-12">
+    <div *ngIf="request" class="m-t-50">
+      <div *ngFor="let est of request.individual_estimations">
+        <app-single-estimation-detail *ngIf="est.method === 'single'" [estimation]="est"></app-single-estimation-detail>
+        <app-min-max-estimation-detail *ngIf="est.method === 'min-max'" [estimation]="est" [current_ip]="current_ip"></app-min-max-estimation-detail>
+      </div>
+    </div>
+    <div>
+        <form class="m-t-50"
+              #taskForm="ngForm"
+              (ngSubmit)="addEstimation()">
+          <div class="form-group row">
+            <label for="new_estimation_title" class="col-sm-3 col-form-label">Task title</label>
+            <div class="col-sm-9">
+              <input type="text"
+                    name="new_estimation_title"
+                    [(ngModel)]="new_estimation_title"
+                    placeholder="Task title"
+                    class="form-control">
+            </div>
           </div>
-        </div>
-        <div class="form-group p-t-50">
-          <button type="submit"
-                  class="btn btn-primary btn-block">
-                  Add task
-          </button>
-        </div>
-      </form>
+          <div class="form-group p-t-50">
+            <button type="submit"
+                    [disabled]="new_estimation_title == undefined || new_estimation_title.length === 0"
+                    class="btn btn-primary btn-block">
+                    Add task
+            </button>
+          </div>
+        </form>
+    </div>
+    <div *ngIf="request" class="m-t-25">
+      <button class="btn btn-primary btn-block"
+              [disabled]="!request.individual_estimations.length"
+              (click)="postEstimation()">Post task(s) estimation</button>
+    </div>
+    <div *ngIf="showSuccessMessage" class="m-t-25">
+        Estimation posted succesfully you can see all the estimations at this <a [routerLink]="['/get-estimation', request.request_id]">link</a>.
+    </div>
   </div>
-  <div *ngIf="request" class="m-t-25">
-    <button class="btn btn-primary btn-block"
-            [disabled]="!request.individual_estimations.length"
-            (click)="postEstimation()">Post estimation</button>
+  <div class="col-lg-6 col-sm-12">
+    <h2 class="text-center">Help</h2>
+    <p><strong>Task</strong>: major task needed to implement the project, for example the front end work would be a task, the back-end work another,
+       testing and deployment would also be best represented as their own tasks. Feel free to add multiple tasks if you consider them necesary.
+       If you see tasks that you yourself have not defined, they have been added by your co-workers they are shown to you as they may be relevant
+        to your estimation but please do not edit them.</p>
+    <p><strong>Subtask</strong>: major tasks are then divided into subtasks which represent more granular elements of the implementation for example
+     theming for the css or unit tests for the code. The total hours needed for a task is autmoatically calculated by adding up the estimations of 
+     it's subtasks.</p>
+    <p><strong>Possible subtask</strong>: If you are not sure a subtask will be needed, for example if you are not sure if extra time has to be alloted to 
+    making the css responsive or deal with older brwosers, add the subtask with a title in the form of <em>"css might need to be written to handle small 
+    screen devices"</em> estimate it and tick the Is Possible checkbox, the subtask will be counted separate from the normal tasks which are sure to be
+    needed but will still show up in the estmation.</p>
+    <p><strong>Question</strong>: feel free to attach any questions you'd like to ask to the estimation and they will be seen by the person who asked for
+    the estimation.</p>
   </div>
 </div>
+
+

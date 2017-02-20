@@ -17,12 +17,7 @@
       </ul>
   </div>
   <div class="card-block" *ngIf="showDetails">
-      <app-min-max-subtask-form *ngIf="addingSubtask" [subtask]="newSubTask" (onSubmit)="insertNewSubTask()"></app-min-max-subtask-form>
-  </div>
-  <div class="card-block" *ngIf="showDetails">
-      <button class="btn btn-block btn-primary"
-              *ngIf="!addingSubtask"
-              (click)="addSubtask()">Add Subtask</button>
+      <app-min-max-subtask-form *ngIf="addingSubtask" [subtask]="newSubTask" (onSubmit)="insertNewSubTask($event)"></app-min-max-subtask-form>
   </div>
     <div class="card-block" *ngIf="showDetails && estimation.potttential_subtasks.length">
         <p>Pottential subtasks:</p>
@@ -31,14 +26,6 @@
             {{ subtask.title }} ({{ subtask.min }} h - {{ subtask.max }} h)
         </li>
         </ul>
-    </div>
-    <div class="card-block" *ngIf="showDetails">
-        <app-min-max-subtask-form *ngIf="addingPossible" [subtask]="newPossible" (onSubmit)="insertNewPossible()"></app-min-max-subtask-form>
-    </div>
-    <div class="card-block" *ngIf="showDetails">
-        <button class="btn btn-block btn-primary"
-                *ngIf="!addingPossible"
-                (click)="addPossible()">Add Pottential Subtask</button>
     </div>
   <div class="card-block" *ngIf="showDetails && estimation.questions.length">
       <p>Questions:</p>
@@ -53,6 +40,11 @@
   <div class="card-block" *ngIf="showDetails">
       <app-min-max-question-form *ngIf="addingQuestion" [question]="newQuestion" (onSubmit)="insertNewQuestion($event)"></app-min-max-question-form>
   </div>
+    <div class="card-block" *ngIf="showDetails">
+    <button class="btn btn-block btn-primary"
+            *ngIf="!addingSubtask"
+            (click)="addSubtask()">Add Subtask</button>
+    </div>
   <div class="card-block" *ngIf="showDetails">
       <button class="btn btn-block btn-primary"
               *ngIf="!addingQuestion"
