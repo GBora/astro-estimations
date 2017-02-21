@@ -16,6 +16,11 @@ export class MinMaxEstimationReportComponent implements OnInit {
 
   switchDetails() {
     this.showDetails = !this.showDetails;
+    if (!this.estimation['showDetails']) {
+      this.estimation['showDetails'] = true;
+    } else {
+      this.estimation['showDetails'] = false;
+    }
   }
 
   ngOnInit() {

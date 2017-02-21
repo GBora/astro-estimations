@@ -1,5 +1,25 @@
-// .min-max-estimation-report {
-//     max-width: 500px;
-//     float: left;
-//     margin-right: 50px;
-// }
+.title {
+    border-bottom: 1px solid #666;
+    padding-top: 1em;
+    padding-left: 2em;
+    padding-bottom: 1em;
+
+    .fa {
+        float: right;
+        padding-top: 0.5em;
+        padding-right: 1em;
+    }
+}
+
+.summary {
+    padding-top: 1em;
+    padding-left: 2em;
+    padding-bottom: 1em;
+}
+
+.full-report {
+    border-top: 1px solid #666;
+    padding-top: 1em;
+    padding-left: 2em;
+    padding-bottom: 1em;
+}

@@ -1,0 +1,26 @@
+.estimations-wrapper {
+    margin: 0 auto;
+    max-width: 100%;
+    width: 100%;
+    display: flex;
+    flex-flow: row wrap;
+    position: relative;
+}
+
+.mm-est {
+    flex-grow: 1;
+    flex-shrink: 1;
+    margin: 2em;
+    flex-basis: 20%;
+    border: 1px solid #666;
+    border-radius: 15px;
+}
+
+.mm-extended {
+    flex-grow: 5 !important;
+    flex-shrink: 5 !important;
+}
+
+.mm-extended ~ .mm-est {
+    display: none !important;
+}
