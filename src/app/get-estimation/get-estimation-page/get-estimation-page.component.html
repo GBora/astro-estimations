@@ -4,7 +4,7 @@
         <div class="m-t-50">
             {{ request.description }}
         </div>
-        <div class="m-t-50" *ngIf="request.files.length > 0">
+        <div class="m-t-50" *ngIf="request.files && request.files.length > 0">
             Attached files:
           <ul>
             <li *ngFor="let file of request.files">
